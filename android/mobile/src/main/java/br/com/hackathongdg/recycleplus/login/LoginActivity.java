@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -18,9 +19,9 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.plus.Plus;
-import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 import java.io.IOException;
 
@@ -157,15 +158,16 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         }
     }
 
-    private class GetIdTokenTask extends AsyncTask<Void, Void, String> {
+    private class GetIdTokenTask extends AsyncTask<Void, Void, Pair<String, String>> {
 
         @Override
-        protected String doInBackground(Void... params) {
+        protected Pair doInBackground(Void... params) {
             String accountName = Plus.AccountApi.getAccountName(mGoogleApiClient);
             Account account = new Account(accountName, GoogleAuthUtil.GOOGLE_ACCOUNT_TYPE);
             String scopes = "audience:server:client_id:" + SERVER_CLIENT_ID; // Not the app's client ID.
             try {
-                return GoogleAuthUtil.getToken(getApplicationContext(), account, scopes);
+                String token = GoogleAuthUtil.getToken(getApplicationContext(), account, scopes);
+                return new Pair<>(accountName, token);
             } catch (IOException e) {
                 Log.e(TAG, "Error retrieving ID token.", e);
                 return null;
@@ -176,21 +178,23 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         }
 
         @Override
-        protected void onPostExecute(String result) {
-            Log.i(TAG, "ID token: " + result);
+        protected void onPostExecute(Pair<String, String> result) {
+            Log.i(TAG, "ID pair: " + result);
             if (result != null) {
+                Log.i(TAG, "ID token: " + result.second);
                 // Successfully retrieved ID Token
-                ParseUser currentUser = ParseUser.getCurrentUser();
-                if (currentUser != null) {
-                    currentUser.logOutInBackground();
-                } else {
-                    ParseUser.logOutInBackground();
-                }
 
-                ParseUser.becomeInBackground(result, new LogInCallback() {
-                    public void done(ParseUser user, ParseException e) {
-                        if (user != null) {
-                            Log.i(TAG, "Sending ID token to Parse: " + user.getSessionToken());
+                ParseUser user = new ParseUser();
+                final String email = result.first;
+                final String password = result.second;
+                final String username = result.first.substring(0, result.first.indexOf('@'));
+                user.setEmail(email);
+                user.setUsername(username);
+                user.setPassword(password);
+                user.signUpInBackground(new SignUpCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if (e == null) {
                             onTokenSentToServer();
                         } else {
                             Log.e(TAG, "Could not send ID token: " + e.getMessage());
