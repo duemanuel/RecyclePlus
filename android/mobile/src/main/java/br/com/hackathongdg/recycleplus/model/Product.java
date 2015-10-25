@@ -7,7 +7,7 @@ import com.parse.ParseObject;
 public class Product extends ParseObject {
 
     public enum Category {
-        PLASTIC("Plástico", 0xFFEF5350), METAL("Metal", 0xFFFFC107), ELECTRONIC("Lixo Eletrônico", 0xFF607D8B), PAPER("Papel", 0xFF26C6DA), OTHER("Outros", 0xFF795548);
+        PLASTIC("Plástico", 0xFFEF5350), METAL("Metal", 0xFFFFAB00), ELECTRONIC("Lixo Eletrônico", 0xFF607D8B), PAPER("Papel", 0xFF26C6DA), OTHER("Outros", 0xFF795548);
 
         private String mName;
         private int mColor;
