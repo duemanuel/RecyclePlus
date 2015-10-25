@@ -1,6 +1,7 @@
 package br.com.hackathongdg.recycleplus.model;
 
 import com.parse.ParseClassName;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 
 @ParseClassName("Product")
@@ -18,12 +19,12 @@ public class Product extends ParseObject {
         return getString(KEY_TITLE);
     }
 
-    public void setPhoto(String photo) {
+    public void setPhoto(ParseFile photo) {
         put(KEY_PHOTO, photo);
     }
 
-    public String getPhoto() {
-        return getString(KEY_PHOTO);
+    public ParseFile getPhoto() {
+        return getParseFile(KEY_PHOTO);
     }
 
     public void setCategory(String category) {

@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 
 import br.com.hackathongdg.recycleplus.R;
 
-public class ProductsActivityFragment extends Fragment {
+public class ProductsFragment extends Fragment {
 
-    public ProductsActivityFragment() {
+    public ProductsFragment() {
     }
 
     @Override

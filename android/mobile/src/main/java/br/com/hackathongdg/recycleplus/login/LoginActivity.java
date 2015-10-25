@@ -167,7 +167,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            mProgressDialog = ProgressDialog.show(LoginActivity.this, "Aguarde...", null, true, false);
+            mProgressDialog = ProgressDialog.show(LoginActivity.this, null, "Aguarde...", true, false);
         }
 
         @Override
