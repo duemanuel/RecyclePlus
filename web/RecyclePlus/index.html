@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Recycle Plus</title>
+    <link href="css/todos.css" media="all" rel="stylesheet" type="text/css"/>
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="js/underscore.js"></script>
+    <script src="http://www.parsecdn.com/js/parse-1.2.13.min.js"></script>
+    <script src="js/todos.js"></script>
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<script src="https://apis.google.com/js/client:platform.js" async defer></script>
+  </head>
+
+  <body>
+
+    <!-- Todo App Interface -->
+
+    <div id="todoapp">
+      <div class="title">
+        <h1>Recycle Plus</h1>
+      </div>
+
+      <div class="content">
+      </div>
+    </div>
+
+    <div id="credits">
+      Powered by <a href="https://www.parse.com">Parse</a> using the <a href="https://www.parse.com/docs/js_guide">JavaScript SDK</a>.<br /><br />
+      
+    </div>
+
+    <!-- Templates -->
+
+    <script type="text/template" id="login-template">
+      <header id="header"></header>
+      <div class="login">
+        <form class="login-form">
+          <h2>Login</h2>
+          <div class="error" style="display:none"></div>
+          <input type="text" id="login-username" placeholder="Usuario" />
+          <input type="password" id="login-password" placeholder="Senha" />
+		  <button>Login</button>
+        </form>
+		
+		<form class="login-googleplus">
+			<button>Login com Google+</button>
+		</form>
+		
+        <form class="signup-form">
+          <h2>Cadastro</h2>
+          <div class="error" style="display:none"></div>
+          <input type="text" id="signup-username" placeholder="Crie um usuario" />
+          <input type="password" id="signup-password" placeholder="Crie uma senha" />
+          <button>Cadastrar</button>
+        </form>
+      </div>
+    </script>
+
+    <script type="text/template" id="manage-todos-template">
+      <div id="user-info">
+        Logado como <b><%= Parse.User.current().escape("username") %></b> (<a href="#" class="log-out">Sair</a>)
+      </div>
+
+      <div class="section">
+
+        <header id="header">
+          <input id="new-todo" placeholder="O que pode ser reciclado agora?" type="text" />
+        </header>
+
+        <div id="main">
+          <input id="toggle-all" type="checkbox">
+          <label for="toggle-all">Mark all as complete</label>
+          
+          <ul id="todo-list">
+            <img src='images/spinner.gif' class='spinner' />
+          </ul>
+        </div>
+
+        <div id="todo-stats"></div>
+      </div>
+    </script>
+
+    <script type="text/template" id="item-template">
+      <li class="<%= done ? 'completed' : '' %>">
+	<div class="view">
+	  <input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %>>
+	  <label class="todo-content"><%= _.escape(content) %></label>
+	  <button class="todo-destroy"></button>
+	</div>
+	<input class="edit" value="<%= _.escape(content) %>">
+      </li>
+    </script>
+
+    <script type="text/template" id="stats-template">
+      <footer id="footer">
+	<span id="todo-count"><strong><%= remaining %></strong> <%= remaining == 1 ? 'item' : 'items' %> left</span>
+	<ul id="filters">
+	  <li>
+	    <a href="javascript:void(0)" id="all" class="selected">Todos os produtos</a>
+	  </li>
+	  <li>
+	    <a href="javascript:void(0)" id="active">- A reciclar -</a>
+	  </li>
+	  <li>
+	    <a href="javascript:void(0)" id="completed">Reciclados</a>
+	  </li>
+	</ul>
+	<button id="clear-completed">Clear completed (<%= done %>)</button>
+      </footer>
+    </script>
+
+  </body>
+
+</html>
