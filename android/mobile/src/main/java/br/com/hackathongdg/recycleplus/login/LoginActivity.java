@@ -72,12 +72,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        mGoogleApiClient.connect();
-    }
-
-    @Override
     protected void onStop() {
         super.onStop();
         mGoogleApiClient.disconnect();
@@ -98,6 +92,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private void onTokenSentToServer() {
         Intent intent = new Intent(this, ProductsActivity.class);
         startActivity(intent);
+
+        finish();
     }
 
     private void onGoogleSignIn() {

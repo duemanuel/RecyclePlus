@@ -1,6 +1,7 @@
 package br.com.hackathongdg.recycleplus.products;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -14,11 +15,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.gms.common.Scopes;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.plus.Plus;
+
 import br.com.hackathongdg.recycleplus.R;
+import br.com.hackathongdg.recycleplus.login.LoginActivity;
 
 public class ProductsActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
+    private GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +40,12 @@ public class ProductsActivity extends AppCompatActivity {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(Plus.API)
+                .addScope(new Scope(Scopes.PROFILE))
+                .addScope(new Scope(Scopes.EMAIL))
+                .build();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +86,14 @@ public class ProductsActivity extends AppCompatActivity {
                     case DialogInterface.BUTTON_POSITIVE:
                         dialog.dismiss();
 
+                        if (mGoogleApiClient.isConnected()) {
+                            Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
+                            mGoogleApiClient.disconnect();
+                        }
+
+                        Intent intent = new Intent(ProductsActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        finish();
                         break;
 
                     case DialogInterface.BUTTON_NEGATIVE:
