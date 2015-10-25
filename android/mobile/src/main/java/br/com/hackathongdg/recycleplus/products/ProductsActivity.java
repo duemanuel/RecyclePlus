@@ -1,9 +1,13 @@
 package br.com.hackathongdg.recycleplus.products;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -12,11 +16,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.io.File;
+
 import br.com.hackathongdg.recycleplus.R;
+import br.com.hackathongdg.recycleplus.map.MostraPontosProximos;
 
 public class ProductsActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
+    private String caminhoArquivo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +43,13 @@ public class ProductsActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                Intent irParaCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                caminhoArquivo = Environment.getExternalStorageDirectory().toString() + "/recycle" + System.currentTimeMillis() + ".jpg";
+                File arquivo = new File(caminhoArquivo);
+                Uri localImagem = Uri.fromFile(arquivo);
+                irParaCamera.putExtra(MediaStore.EXTRA_OUTPUT, localImagem);
+                startActivityForResult(irParaCamera, 123);
             }
         });
 
@@ -67,5 +80,19 @@ public class ProductsActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 123) {
+            if (resultCode == Activity.RESULT_OK)
+            {
+                Intent MostrarMapa = new Intent(this, MostraPontosProximos.class);
+                startActivity(MostrarMapa);
+            } else
+            {
+                caminhoArquivo = null;
+            }
+        }
     }
 }
