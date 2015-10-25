@@ -1,5 +1,6 @@
 package br.com.hackathongdg.recycleplus.products;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -43,8 +44,9 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Product product = mDataset.get(position);
+        Context context = holder.mImageView.getContext();
 
-        Picasso.with(holder.mImageView.getContext()).load(product.getPhoto()).into(holder.mImageView);
+        Picasso.with(context).load(product.getPhoto()).into(holder.mImageView);
         holder.mTextView.setText(product.getTitle());
 
     }
