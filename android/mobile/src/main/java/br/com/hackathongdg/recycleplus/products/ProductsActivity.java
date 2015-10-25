@@ -41,6 +41,8 @@ public class ProductsActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        setTitle(R.string.recicle);
+
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(Plus.API)
                 .addScope(new Scope(Scopes.PROFILE))

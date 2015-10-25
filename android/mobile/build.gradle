@@ -20,6 +20,12 @@ android {
     }
 }
 
+repositories {
+    maven {
+        url "http://dl.bintray.com/veinhorn/maven"
+    }
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     wearApp project(':wear')
@@ -34,4 +40,5 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.1.0'
     compile 'com.parse.bolts:bolts-android:1.+'
     compile 'com.parse:parse-android:1.+'
+    compile 'com.veinhorn.tagview:library:1.0.4@aar'
 }

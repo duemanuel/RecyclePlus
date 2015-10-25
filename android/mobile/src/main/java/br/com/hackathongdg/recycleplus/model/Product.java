@@ -6,6 +6,26 @@ import com.parse.ParseObject;
 @ParseClassName("Product")
 public class Product extends ParseObject {
 
+    public enum Category {
+        PLASTIC("Plástico", 0xFFEF5350), METAL("Metal", 0xFFFFC107), ELECTRONIC("Lixo Eletrônico", 0xFF607D8B), PAPER("Papel", 0xFF26C6DA), OTHER("Outros", 0xFF795548);
+
+        private String mName;
+        private int mColor;
+
+        Category(String name, int color) {
+            mName = name;
+            mColor = color;
+        }
+
+        public String getName() {
+            return mName;
+        }
+
+        public int getColor() {
+            return mColor;
+        }
+    }
+
     private final static String KEY_TITLE = "title'";
     private final static String KEY_PHOTO = "photo";
     private final static String KEY_CATEGORY = "category";
@@ -27,12 +47,12 @@ public class Product extends ParseObject {
         return getString(KEY_PHOTO);
     }
 
-    public void setCategory(String category) {
-        put(KEY_CATEGORY, category);
+    public void setCategory(Category category) {
+        put(KEY_CATEGORY, category.ordinal());
     }
 
-    public String getCategory() {
-        return getString(KEY_CATEGORY);
+    public Category getCategory() {
+        return Category.values()[getInt(KEY_CATEGORY)];
     }
 
     public void setRecycled(boolean recycled) {

@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.veinhorn.tagview.TagView;
 
 import java.util.List;
 
@@ -17,12 +18,14 @@ import br.com.hackathongdg.recycleplus.model.Product;
 public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final ImageView mImageView;
+        private final TagView mTagView;
         public TextView mTextView;
 
         public ViewHolder(ViewGroup v) {
             super(v);
             mTextView = (TextView) v.findViewById(R.id.info_text);
             mImageView = (ImageView) v.findViewById(R.id.card_image);
+            mTagView = (TagView) v.findViewById(R.id.card_tagview);
         }
     }
 
@@ -48,7 +51,8 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
         Picasso.with(context).load(product.getPhoto()).into(holder.mImageView);
         holder.mTextView.setText(product.getTitle());
-
+        holder.mTagView.setText(product.getCategory().getName());
+        holder.mTagView.setTagColor(product.getCategory().getColor());
     }
 
     @Override
