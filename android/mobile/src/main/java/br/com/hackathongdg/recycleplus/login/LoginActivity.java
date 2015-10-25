@@ -226,7 +226,5 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 showSignInError("Não conseguimos obter os dados de sua conta no Google.");
             }
         }
-
     }
-
 }
