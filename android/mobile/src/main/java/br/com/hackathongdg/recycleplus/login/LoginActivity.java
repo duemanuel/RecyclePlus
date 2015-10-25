@@ -1,6 +1,7 @@
 package br.com.hackathongdg.recycleplus.login;
 
 import android.accounts.Account;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.os.AsyncTask;
@@ -19,6 +20,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.plus.Plus;
+import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
@@ -160,8 +162,16 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     private class GetIdTokenTask extends AsyncTask<Void, Void, Pair<String, String>> {
 
+        private ProgressDialog mProgressDialog;
+
         @Override
-        protected Pair doInBackground(Void... params) {
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mProgressDialog = ProgressDialog.show(LoginActivity.this, "Aguarde...", null, true, false);
+        }
+
+        @Override
+        protected Pair<String, String> doInBackground(Void... params) {
             String accountName = Plus.AccountApi.getAccountName(mGoogleApiClient);
             Account account = new Account(accountName, GoogleAuthUtil.GOOGLE_ACCOUNT_TYPE);
             String scopes = "audience:server:client_id:" + SERVER_CLIENT_ID; // Not the app's client ID.
@@ -184,25 +194,38 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 Log.i(TAG, "ID token: " + result.second);
                 // Successfully retrieved ID Token
 
-                ParseUser user = new ParseUser();
+                final ParseUser user = new ParseUser();
                 final String email = result.first;
                 final String password = result.second;
                 final String username = result.first.substring(0, result.first.indexOf('@'));
                 user.setEmail(email);
                 user.setUsername(username);
                 user.setPassword(password);
-                user.signUpInBackground(new SignUpCallback() {
+                user.logInInBackground(username, password, new LogInCallback() {
                     @Override
-                    public void done(ParseException e) {
-                        if (e == null) {
-                            onTokenSentToServer();
+                    public void done(ParseUser user, ParseException e) {
+                        if (e != null) {
+                            user.signUpInBackground(new SignUpCallback() {
+                                @Override
+                                public void done(ParseException e) {
+                                    mProgressDialog.dismiss();
+                                    if (e == null) {
+                                        onTokenSentToServer();
+                                    } else {
+                                        Log.e(TAG, "Could not send ID token: " + e.getMessage());
+                                        showSignInError(e.getMessage());
+                                    }
+                                }
+                            });
                         } else {
-                            Log.e(TAG, "Could not send ID token: " + e.getMessage());
-                            showSignInError(e.getMessage());
+                            mProgressDialog.dismiss();
+                            onTokenSentToServer();
                         }
                     }
                 });
+
             } else {
+                mProgressDialog.dismiss();
                 // There was some error getting the ID Token
                 showSignInError("Não conseguimos obter os dados de sua conta no Google.");
             }
