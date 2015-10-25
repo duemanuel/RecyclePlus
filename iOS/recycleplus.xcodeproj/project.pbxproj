@@ -39,6 +39,15 @@
 		2EC681AE1BC596AC00D0B2CA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC681AD1BC596AC00D0B2CA /* libz.tbd */; };
 		2EC681B41BC5A39500D0B2CA /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC681B31BC5A39500D0B2CA /* AudioToolbox.framework */; };
 		2EC681B61BC5AEF900D0B2CA /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC681B51BC5AEF900D0B2CA /* BaseModel.swift */; };
+		2EE4FA2B1BDD24520089FA5D /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6CB4141BDD1D6000C5771B /* AddressBook.framework */; };
+		2EE4FA2C1BDD245A0089FA5D /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6CB4121BDD1D5200C5771B /* AssetsLibrary.framework */; };
+		2EE4FA2D1BDD24680089FA5D /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6CB4101BDD1D4300C5771B /* CoreMotion.framework */; };
+		2EE4FA2F1BDD24720089FA5D /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EE4FA2E1BDD24720089FA5D /* CoreText.framework */; };
+		2EE4FA311BDD247B0089FA5D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EE4FA301BDD247B0089FA5D /* MediaPlayer.framework */; };
+		2EE4FA371BDD24C60089FA5D /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2EE4FA361BDD24C60089FA5D /* GooglePlus.bundle */; };
+		2EE4FA451BDD29CE0089FA5D /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EE4FA441BDD29CE0089FA5D /* GooglePlus.framework */; };
+		2EE4FA481BDD29F50089FA5D /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EE4FA461BDD29F50089FA5D /* GoogleOpenSource.framework */; };
+		2EE4FA491BDD29F50089FA5D /* GooglePlus.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EE4FA471BDD29F50089FA5D /* GooglePlus.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,9 +108,15 @@
 		2EC681A71BC5956800D0B2CA /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		2EC681AB1BC596A000D0B2CA /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		2EC681AD1BC596AC00D0B2CA /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		2EC681B11BC59D4000D0B2CA /* CSA-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CSA-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		2EC681B11BC59D4000D0B2CA /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		2EC681B31BC5A39500D0B2CA /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		2EC681B51BC5AEF900D0B2CA /* BaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
+		2EE4FA2E1BDD24720089FA5D /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		2EE4FA301BDD247B0089FA5D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		2EE4FA361BDD24C60089FA5D /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlus.bundle; path = "/Users/eduardooliveira/Downloads/google-plus-ios-sdk-1.7.1/GooglePlus.bundle"; sourceTree = "<absolute>"; };
+		2EE4FA441BDD29CE0089FA5D /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GooglePlus.framework; sourceTree = "<group>"; };
+		2EE4FA461BDD29F50089FA5D /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
+		2EE4FA471BDD29F50089FA5D /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GooglePlus.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +124,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EE4FA481BDD29F50089FA5D /* GoogleOpenSource.framework in Frameworks */,
+				2EE4FA491BDD29F50089FA5D /* GooglePlus.bundle in Frameworks */,
+				2EE4FA451BDD29CE0089FA5D /* GooglePlus.framework in Frameworks */,
+				2EE4FA311BDD247B0089FA5D /* MediaPlayer.framework in Frameworks */,
+				2EE4FA2F1BDD24720089FA5D /* CoreText.framework in Frameworks */,
+				2EE4FA2D1BDD24680089FA5D /* CoreMotion.framework in Frameworks */,
+				2EE4FA2C1BDD245A0089FA5D /* AssetsLibrary.framework in Frameworks */,
+				2EE4FA2B1BDD24520089FA5D /* AddressBook.framework in Frameworks */,
 				2EC681B41BC5A39500D0B2CA /* AudioToolbox.framework in Frameworks */,
 				2EC681AE1BC596AC00D0B2CA /* libz.tbd in Frameworks */,
 				2EC681AC1BC596A000D0B2CA /* libsqlite3.0.tbd in Frameworks */,
@@ -147,7 +170,7 @@
 		2E83EB361BCD97EB004221F4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2EC681B11BC59D4000D0B2CA /* CSA-Bridging-Header.h */,
+				2EC681B11BC59D4000D0B2CA /* Bridging-Header.h */,
 				2EC681611BC5929B00D0B2CA /* AppDelegate.swift */,
 				2EC681B51BC5AEF900D0B2CA /* BaseModel.swift */,
 			);
@@ -242,6 +265,11 @@
 		2EC681A91BC5966700D0B2CA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2EE4FA461BDD29F50089FA5D /* GoogleOpenSource.framework */,
+				2EE4FA471BDD29F50089FA5D /* GooglePlus.bundle */,
+				2EE4FA441BDD29CE0089FA5D /* GooglePlus.framework */,
+				2EE4FA301BDD247B0089FA5D /* MediaPlayer.framework */,
+				2EE4FA2E1BDD24720089FA5D /* CoreText.framework */,
 				2E6CB4141BDD1D6000C5771B /* AddressBook.framework */,
 				2E6CB4121BDD1D5200C5771B /* AssetsLibrary.framework */,
 				2E6CB4101BDD1D4300C5771B /* CoreMotion.framework */,
@@ -386,6 +414,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EC6816C1BC5929B00D0B2CA /* LaunchScreen.storyboard in Resources */,
+				2EE4FA371BDD24C60089FA5D /* GooglePlus.bundle in Resources */,
 				2E6CB40B1BDD1B8B00C5771B /* GoogleService-Info.plist in Resources */,
 				2EC681691BC5929B00D0B2CA /* Assets.xcassets in Resources */,
 				2EC681671BC5929B00D0B2CA /* Main.storyboard in Resources */,
@@ -570,12 +599,15 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = ihm/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = hackaton.recycleplus;
 				PRODUCT_NAME = "CSA Mobile";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "CSA-Bridging-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -591,12 +623,15 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = ihm/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = hackaton.recycleplus;
 				PRODUCT_NAME = "CSA Mobile";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "CSA-Bridging-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
