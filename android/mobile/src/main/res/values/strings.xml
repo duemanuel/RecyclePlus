@@ -16,4 +16,8 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="recicle">Recicle</string>
+    <string name="recicled">Reciclados</string>
+    <string name="logout">Logout</string>
+    <string name="logout_are_you_sure">Tem certeza que deseja fazer logout?</string>
 </resources>
