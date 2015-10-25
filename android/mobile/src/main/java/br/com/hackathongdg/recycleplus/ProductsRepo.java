@@ -36,7 +36,7 @@ public class ProductsRepo {
         Product product3 = new Product();
         product3.setTitle("Lote de baterias");
         product3.setCategory("Lixo eletrônico");
-        product3.setPhoto("https://upload.wikimedia.org/wikipedia/commons/c/c7/Side-by-side_battery_pack.JPG");
+        product3.setPhoto("http://www.solarnavigator.net/world_solar_challenge/solar_challenge_images/battery_pack_varta_lithium_ion_accumulator.jpg");
         product3.setRecycled(false);
 
         List<Product> products = new ArrayList<>();
