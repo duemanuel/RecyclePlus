@@ -1,7 +1,6 @@
 package br.com.hackathongdg.recycleplus.model;
 
 import com.parse.ParseClassName;
-import com.parse.ParseFile;
 import com.parse.ParseObject;
 
 @ParseClassName("Product")
@@ -10,6 +9,7 @@ public class Product extends ParseObject {
     private final static String KEY_TITLE = "title'";
     private final static String KEY_PHOTO = "photo";
     private final static String KEY_CATEGORY = "category";
+    private final static String KEY_RECYCLED = "recycled";
 
     public void setTitle(String title) {
         put(KEY_TITLE, title);
@@ -19,12 +19,12 @@ public class Product extends ParseObject {
         return getString(KEY_TITLE);
     }
 
-    public void setPhoto(ParseFile photo) {
+    public void setPhoto(String photo) {
         put(KEY_PHOTO, photo);
     }
 
-    public ParseFile getPhoto() {
-        return getParseFile(KEY_PHOTO);
+    public String getPhoto() {
+        return getString(KEY_PHOTO);
     }
 
     public void setCategory(String category) {
@@ -33,5 +33,13 @@ public class Product extends ParseObject {
 
     public String getCategory() {
         return getString(KEY_CATEGORY);
+    }
+
+    public void setRecycled(boolean recycled) {
+        put(KEY_RECYCLED, recycled);
+    }
+
+    public boolean isRecycled() {
+        return getBoolean(KEY_RECYCLED);
     }
 }

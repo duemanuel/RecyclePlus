@@ -6,7 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
+import br.com.hackathongdg.recycleplus.ProductsRepo;
 import br.com.hackathongdg.recycleplus.R;
+import br.com.hackathongdg.recycleplus.model.Product;
 
 public class ProductsFragment extends Fragment {
 
@@ -16,6 +20,10 @@ public class ProductsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_products, container, false);
+        View view = inflater.inflate(R.layout.fragment_products, container, false);
+
+        List<Product> products = ProductsRepo.getInstance().getProducts();
+
+        return view;
     }
 }
